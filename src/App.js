@@ -3,14 +3,17 @@ import './App.css';
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Login from "../src/pages/login/Login";
 import Home from "../src/pages/home/Home";
+import {createTheme, ThemeProvider} from "@mui/material";
+import {useState} from "react";
+
 
 
 function App() {
+
     const user = JSON.parse(localStorage.getItem('username'));
 
-
-
     return (
+
         <div className="App">
             <BrowserRouter>
                 <div>
@@ -20,8 +23,8 @@ function App() {
                     </Routes>
                 </div>
             </BrowserRouter>
-
         </div>
+
     );
 }
 

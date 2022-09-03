@@ -1,17 +1,16 @@
-
 import { useState } from "react";
 
 
 function Footer({ todos, setTodos, setHide }) {
 
-  const unCompleted = todos.filter((check) => check.is === false);
-
+  const unCompleted = todos.filter((check) => check.isCompleted === false);
+console.log(unCompleted)
 
   const [select, setSelect] = useState("selected", "", "");
 
 
   const clearCompleted = (e) => {
-    setTodos(todos.filter((todo) => todo.checked === false));
+    setTodos(todos.filter((todo) => todo.isCompleted === false));
   };
 
 

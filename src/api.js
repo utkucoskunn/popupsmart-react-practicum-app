@@ -13,7 +13,6 @@ export const fetchTodos = async () => {
 //Delete********************************************************************************
 export const deleteTodos = async (id) => {
     try {
-        console.log(id)
         await axios.delete(`${process.env.REACT_APP_BASE_ENDPOINT}/todos/${id}`);
         console.log("message: todo has been deleted!")
     } catch (error) {
@@ -22,7 +21,20 @@ export const deleteTodos = async (id) => {
 };
 
 //Put********************************************************************************
-
+export const editTodos = async (id,req) => {
+    try {
+        console.log(id)
+        await axios.put(`${process.env.REACT_APP_BASE_ENDPOINT}/todos/${id}`,
+            {
+                content: req.content,
+                isCompleted: req.isCompleted
+            }
+            );
+        console.log("message: todo has been edited!")
+    } catch (error) {
+        console.log(error)
+    }
+};
 
 //Post********************************************************************************
 export const postTodos = async (req,res) => {

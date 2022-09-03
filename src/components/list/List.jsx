@@ -1,21 +1,29 @@
 import React from "react";
+import {deleteTodos, editTodos} from "../../api";
+import EditIcon from '@mui/icons-material/Edit';
 
-import {deleteTodos} from "../../api";
 
 export default function List({todos, setTodos, hide}) {
 
     const checkTodo = (e) => {
+        e.preventDefault();
         let newTodos = todos.map((todo) => {
             if (parseInt(todo.id) === parseInt(e.target.id)) {
-                return {...todo, checked: !todo.checked};
+                editTodos(e.target.id, {
+                    content: todo.content,
+                    isCompleted: !todo.isCompleted
+                })
+                return {...todo, isCompleted: !todo.isCompleted};
             }
             return todo;
         });
         setTodos(newTodos);
+
+
     };
 
     const deleteTodo = (e) => {
-       deleteTodos(e.target.id)
+        deleteTodos(e.target.id)
 
         setTodos(
             todos.filter((todo) => parseInt(todo.id) !== parseInt(e.target.id))
@@ -45,15 +53,19 @@ export default function List({todos, setTodos, hide}) {
                                 defaultChecked={item.isCompleted}
                                 id={item.id}
                                 onClick={checkTodo}
-                                // işaretlenme durumu değiştiğinde id kullanarak veriyi state'e set ediyoruz.
                             />
                             <label>{item.content}</label>
                             <button
                                 className="destroy"
                                 id={item.id}
                                 onClick={deleteTodo}
-                                // Silmek için butona basıldığında id yardımı ile state'den veriyi sildiriyoruz.
                             />
+                            <EditIcon
+                                className="edit"
+                                id={item.id}
+                                onClick={deleteTodo}
+                            />
+
                         </div>
                     </li>
                 ))}

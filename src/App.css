@@ -250,6 +250,31 @@ body {
 
 .todo-list li .edit {
 	display: none;
+	position: absolute;
+	top: 0;
+	right: 40px;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	margin: auto 0;
+	font-size: 30px;
+	color: #6dc64e;
+	margin-bottom: 11px;
+	transition: color 0.2s ease-out;
+	align-items: flex-end;
+
+}
+
+.todo-list li .edit:hover {
+	color: #0f4c35;
+}
+
+.todo-list li .edit:after {
+	content: '×';
+}
+
+.todo-list li:hover .edit {
+	display: block;
 }
 
 .todo-list li.editing:last-child {

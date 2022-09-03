@@ -1,66 +1,109 @@
-
-import { useState } from "react";
-
-const Navbar=({ todos, setTodos, setHide })=>{
-    const unCompleted = todos.filter((check) => check.checked === false);
-
-
-  const [select, setSelect] = useState("selected", "", "");
-
-
-  const clearCompleted = (e) => {
-    setTodos(todos.filter((todo) => todo.checked === false));
-  };
-
-
-  const selectedButton = (e) => {
-    switch (e.target.id) {
-      case "All":
-        setSelect(["selected", "", ""]);
-        setHide("All");
-        break;
-      case "Active":
-        setSelect(["", "selected", ""]);
-        setHide("Active");
-        break;
-      case "Completed":
-        setSelect(["", "", "selected"]);
-        setHide("Completed");
-        break;
-      default:
-    }
-  };
-    return(
-        <footer className="footer">
-      <span className="todo-count">
-        <strong>{unCompleted.length}</strong>
-        {unCompleted.length > 1 ? " items left" : " item left"}
-
-      </span>
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 
-      <ul className="filters">
-        <li>
-          <a className={select[0]} id="All" onClick={selectedButton}>
-            All
-          </a>
-        </li>
-        <li>
-          <a className={select[1]} id="Active" onClick={selectedButton}>
-            Active
-          </a>
-        </li>
-        <li>
-          <a className={select[2]} id="Completed" onClick={selectedButton}>
-            Completed
-          </a>
-        </li>
-      </ul>
+const Navbar = ({setMode, mode}) => {
 
-      <text className="clear-completed" onClick={clearCompleted}>
-        Clear completed
-      </text>
-    </footer>
+    const current = new Date();
+    const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+
+
+    const [auth, setAuth] = React.useState(true);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleChange = (event) => {
+        setAuth(event.target.checked);
+    };
+
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    return (
+        <Box sx={{flexGrow: 1}}>
+            <FormGroup>
+                <FormControlLabel
+                    control={
+                        <Switch
+                            onClick={e => setMode(mode === "light" ? "dark" : "light")}
+                        />
+                    }
+                    label={mode ? 'Dark Mode' : 'Light Mode'}
+                />
+            </FormGroup>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{mr: 2}}
+                    >
+                    </IconButton>
+                    <Typography
+                        variant="h6"
+                        component="div"
+                        sx={{flexGrow: 1}}>
+                        {
+                            date
+                        }
+                    </Typography>
+                    {auth && (
+                        <div>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleMenu}
+                                color="inherit"
+                            >
+                                <AccountCircle/>
+                                <Typography variant="h6" component="div" sx={{flexGrow: 1, ml: 2}}>
+                                    {localStorage.getItem('username')}
+                                </Typography>
+
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                                <MenuItem onClick={handleClose}>My account</MenuItem>
+                            </Menu>
+                        </div>
+                    )}
+                </Toolbar>
+            </AppBar>
+        </Box>
+
     )
 }
 export default Navbar;

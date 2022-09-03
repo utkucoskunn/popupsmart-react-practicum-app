@@ -6,10 +6,19 @@ import Footer from '../../components/footer/footer';
 import Navbar from "../../components/navbar/Navbar";
 
 import {fetchTodos} from "../../api";
-
+import {createTheme, ThemeProvider} from "@mui/material";
+import Box from "@mui/material/Box";
 
 
 const Home = () => {
+    const [mode, setMode] = useState("light");
+    const darkTheme = createTheme({
+        palette: {
+            mode: mode
+        }
+    })
+
+
     const [todos, setTodos] = useState([]);
     useEffect(() => {
         const getTodos = async () => {
@@ -25,14 +34,15 @@ const Home = () => {
 
     const [hide, setHide] = useState("All");
     return (
-        <div>
-            <div className="todoapp">
-                <Navbar todos={todos} setTodos={setTodos}/>
-                <Form todos={todos} setTodos={setTodos}/>{" "}
-                <List todos={todos} setTodos={setTodos} hide={hide}/>{" "}
-                <Footer todos={todos} setTodos={setTodos} setHide={setHide}/>{" "}
-            </div>
-        </div>
+         <ThemeProvider theme={darkTheme}>
+                <Box className="todoapp">
+                    <Navbar setMode={setMode} mode={mode}/>
+                    <Form todos={todos} setTodos={setTodos} setMode={setMode} mode={mode}/>{" "}
+                    <List todos={todos} setTodos={setTodos} hide={hide}/>{" "}
+                    <Footer todos={todos} setTodos={setTodos} setHide={setHide}/>{" "}
+                </Box>
+
+             </ThemeProvider>
     )
 }
 

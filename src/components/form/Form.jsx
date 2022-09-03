@@ -1,5 +1,5 @@
-import {useState, useEffect} from "react";
-import {postTodos, fetchTodos} from "../../api";
+import {useState} from "react";
+import {postTodos} from "../../api";
 
 
 export default function Form({todos, setTodos}) {
