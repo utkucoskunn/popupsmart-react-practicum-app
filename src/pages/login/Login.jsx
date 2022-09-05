@@ -1,15 +1,14 @@
-
 import * as yup from 'yup';
 import {useFormik} from 'formik';
 import {useNavigate} from "react-router-dom";
+
 
 import {
     Alert,
     Avatar,
     Box,
     Button,
-    Container,
-    CssBaseline, Link,
+    Container, Link,
     TextField,
     Typography
 } from "@mui/material";
@@ -41,66 +40,75 @@ const Login = () => {
 
     const formik = useFormik({
         initialValues: {
-            firstname: " "
+            firstname: ""
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
+        onSubmit: (values, e) => {
+
             localStorage.setItem('username', JSON.stringify(values.firstname));
-            //navigate("/");
+            navigate("/")
         },
     });
+
     return (
-        <div>
-            <Container component="main" maxWidth="xs" onSubmit={formik.handleSubmit}>
-                <CssBaseline/>
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Avatar sx={{m: 1, bgcolor: 'primary.main'}}>
-                        <InputIcon/>
-                    </Avatar>
-                    <Typography component="h1" variant="h5" mt="4px">
-                        Welcome TODO APP
-                    </Typography>
-                    <Box my={5}>
-                        {formik.errors.general &&
-                            (<Alert status="error">
-                                {formik.errors.general}
-                            </Alert>)}
-                    </Box>
-                    <Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{mt: 1}}>
-                        <TextField
-                            fullWidth
-                            id="firstname"
-                            name="firstname"
-                            label="User Name"
-                            value={formik.values.firstname}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            error={formik.touched.firstname && Boolean(formik.errors.firstname)}
-                            helperText={formik.touched.firstname && formik.errors.firstname}
-                        />
 
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{mt: 3, mb: 2}}
-                        >
-                            Sign In
-                        </Button>
+        <Container component="main" maxWidth="xs" sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+        }}>
 
-
-                    </Box>
+            <Box
+                sx={{
+                    marginTop: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Avatar sx={{m: 1, bgcolor: 'primary.main'}}>
+                    <InputIcon/>
+                </Avatar>
+                <Typography component="h1" variant="h5" mt="4px">
+                    Welcome TODO APP
+                </Typography>
+                <Box my={5}>
+                    {formik.errors.general &&
+                        (<Alert status="error">
+                            {formik.errors.general}
+                        </Alert>)}
                 </Box>
-                <Copyright sx={{mt: 8, mb: 4}}/>
-            </Container>
-        </div>
+                <Box component="form" onSubmit={formik.handleSubmit} noValidate
+                     sx={{mt: 1}}>
+                    <TextField
+                        fullWidth
+                        id="firstname"
+                        name="firstname"
+                        label="User Name"
+                        value={formik.values.firstname}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={formik.touched.firstname && Boolean(formik.errors.firstname)}
+                        helperText={formik.touched.firstname && formik.errors.firstname}
+                    />
+
+
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{mt: 3, mb: 2}}
+                    >
+                        Sign In
+                    </Button>
+
+
+                </Box>
+            </Box>
+            <Copyright sx={{mt: 8, mb: 4}}/>
+        </Container>
+
     )
 }
 export default Login;

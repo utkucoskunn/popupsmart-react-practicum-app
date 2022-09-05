@@ -3,8 +3,7 @@ import './App.css';
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Login from "../src/pages/login/Login";
 import Home from "../src/pages/home/Home";
-import {createTheme, ThemeProvider} from "@mui/material";
-import {useState} from "react";
+
 
 
 
@@ -18,7 +17,7 @@ function App() {
             <BrowserRouter>
                 <div>
                     <Routes>
-                        <Route path="/" element={user ? <Home/> : <Navigate to="/login"/>}/>
+                        <Route path="/" element={<Home/> }/>
                         <Route path="/login" element={!user ? <Login/> : <Navigate to="/"/>}/>
                     </Routes>
                 </div>
