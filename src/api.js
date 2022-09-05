@@ -14,7 +14,6 @@ export const fetchTodos = async () => {
 export const deleteTodos = async (id) => {
     try {
         await axios.delete(`${process.env.REACT_APP_BASE_ENDPOINT}/todos/${id}`);
-        console.log("message: todo has been deleted!")
     } catch (error) {
         console.log(error)
     }
@@ -30,7 +29,6 @@ export const editTodos = async (id,req) => {
                 isCompleted: req.isCompleted
             }
             );
-        console.log("message: todo has been edited!")
     } catch (error) {
         console.log(error)
     }
@@ -45,7 +43,6 @@ export const postTodos = async (req,res) => {
                 isCompleted: req.isCompleted
             }
         );
-        console.log("message: todo has been created!")
        return newTodo;
     } catch (error) {
         console.log(error)
