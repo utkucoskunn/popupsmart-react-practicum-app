@@ -14,6 +14,7 @@ This is a super simple Todo App built using React.js and styled using Material U
 * [![React-Router][React-Router]][React-Router-url]
 * [![MUI][MUI]][MUI-url]
 * ![HTML5][HTML5]
+* [![Netlify Status](https://api.netlify.com/api/v1/badges/db9fe2eb-d877-49ed-b1e0-4149ff648e37/deploy-status)](https://app.netlify.com/sites/muctodoapp/deploys)
 
 
 
@@ -22,7 +23,7 @@ This is a super simple Todo App built using React.js and styled using Material U
 
 <!-- ABOUT THE PROJECT -->
 ## Demo
-View the demo at https://6317b9749379660008764145--muctodoapp.netlify.app/
+View the demo at https://muctodoapp.netlify.app/
                       
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -49,3 +50,4 @@ Utku Coşkun -  - utkucoskun1@gmail.com
 [MUI]: https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white&style=plastic&Width=30
 [MUI-url]: https://mui.com/
 [HTML5]:https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white&style=plastic&Width=30
+
