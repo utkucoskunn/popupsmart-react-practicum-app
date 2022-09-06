@@ -22,7 +22,7 @@ This is a super simple Todo App built using React.js and styled using Material U
 
 <!-- ABOUT THE PROJECT -->
 ## Demo
-View the demo at https://app.netlify.com/sites/muctodoapp/deploys
+View the demo at https://6317b9749379660008764145--muctodoapp.netlify.app/
                       
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
