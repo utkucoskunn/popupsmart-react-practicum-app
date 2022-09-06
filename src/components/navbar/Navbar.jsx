@@ -30,7 +30,7 @@ const Navbar = ({setMode, mode}) => {
 
     const handleClose = () => {
         localStorage.removeItem('username');
-        navigate("/login")
+        navigate("/")
     };
 
     return (

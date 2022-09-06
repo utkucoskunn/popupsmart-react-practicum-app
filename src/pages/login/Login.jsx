@@ -30,6 +30,7 @@ function Copyright(props) {
 
 
 const Login = () => {
+
     const navigate = useNavigate();
     const validationSchema = yup.object({
         firstname: yup
@@ -46,7 +47,7 @@ const Login = () => {
         onSubmit: (values, e) => {
 
             localStorage.setItem('username', JSON.stringify(values.firstname));
-            navigate("/")
+            navigate("/home")
         },
     });
 

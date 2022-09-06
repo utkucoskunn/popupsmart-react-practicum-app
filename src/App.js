@@ -3,12 +3,10 @@ import './App.css';
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Login from "../src/pages/login/Login";
 import Home from "../src/pages/home/Home";
-
+import {useEffect, useState} from "react";
 
 
 function App() {
-
-    const user = JSON.parse(localStorage.getItem('username'));
 
     return (
 
@@ -16,8 +14,8 @@ function App() {
             <BrowserRouter>
                 <div>
                     <Routes>
-                        <Route path="/" element={ user ? <Home/> :<Navigate to="login"/> }/>
-                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/" element={ <Login/>}/>
+                        <Route path="/home" element={<Home/>}/>
                     </Routes>
                 </div>
             </BrowserRouter>
